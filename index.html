@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('bgmoney.avif'); /* Replace with the path to your image */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .language-switcher {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .lang-btn {
+            margin-left: 10px;
+            padding: 8px 12px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: #0056b3;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #444;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        #calculate-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        #calculate-btn:hover {
+            background: #218838;
+            transform: scale(1.05);
+        }
+
+        #reset-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        #reset-btn:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Add hover effect for inputs */
+        input:hover {
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="te">తెలుగు</button>
+    </div>
+
+    <!-- Heading -->
+    <h1 id="header">Interest Calculator</h1>
+
+    <!-- Principal -->
+    <label for="principal" id="label-principal">Principal Amount:</label>
+    <input type="number" id="principal" placeholder="Enter Principal Amount">
+
+    <!-- Interest Rate -->
+    <label for="rate" id="label-rate">Interest Rate (%):</label>
+    <input type="number" id="rate" placeholder="Enter Interest Rate">
+
+    <!-- Start Date -->
+    <label for="start-date" id="label-start-date">Start Date:</label>
+    <input type="date" id="start-date">
+
+    <!-- End Date -->
+    <label for="end-date" id="label-end-date">End Date:</label>
+    <input type="date" id="end-date">
+
+    <!-- Simple or Compound Interest -->
+    <label for="interest-type" id="label-interest-type">Select Interest Type:</label>
+    <select id="interest-type" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; transition: border-color 0.3s ease;">
+        <option value="simple">Simple Interest</option>
+        <option value="compound">Compound Interest</option>
+        <!-- <option value="continuous">Continuous Compound Interest</option> -->
+    </select>
+
+    <div class="buttons">
+        <!-- Calculate Button -->
+        <button id="calculate-btn">Calculate</button>
+        <!-- Reset Button -->
+        <button id="reset-btn">Reset</button>
+    </div>
+
+    <!-- Result -->
+    <div id="result"></div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
