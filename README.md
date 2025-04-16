@@ -42,8 +42,11 @@ A simple web-based Interest Calculator built with HTML, CSS, and JavaScript. Thi
 ---
 interest-calculator/
 ├── index.html        # Main HTML file
+
 ├── style.css         # Stylesheet for the application
+
 ├── script.js         # JavaScript file for logic and functionality
+
 └── README.md         # Project documentation
 
 ---
