@@ -1,0 +1,4 @@
+const { calculateInterest } = require('../path-to-your-js-file'); // Adjust path
+test('calculates simple interest', () => {
+  expect(calculateInterest(1000, 5, 1)).toBe(50); // Example logic
+});
