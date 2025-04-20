@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+    environment {
+        // Define environment variables if needed
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials') // Add in Jenkins credentials
+    }
+    stages {
+        stage('Clone') {
+            steps {
+                git 'https://github.com/Manojkumarreddy7175/interest-calculator.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'npm run test'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') { // Configure SonarQube server in Jenkins
+                    sh 'sonar-scanner'
+                }
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t manojkumarreddy7175/interest-calculator:latest .'
+                sh 'echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin'
+                sh 'docker push manojkumarreddy7175/interest-calculator:latest'
+            }
+        }
+        stage('Deploy Locally') {
+            steps {
+                sh 'docker run -d -p 8080:80 manojkumarreddy7175/interest-calculator:latest'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Pipeline completed'
+        }
+        failure {
+            echo 'Pipeline failed. Check logs.'
+        }
+    }
+}
